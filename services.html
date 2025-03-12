@@ -3,48 +3,217 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>أبو نواف | خدمات أمنية سيبرانية</title>
+    <title>بوابة أبو نواف الإدارية</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.0.0/dist/themes/light.css">
     <link rel="stylesheet" href="style.css">
-    <!-- Firebase SDK -->
-    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
 </head>
 <body>
-    <!-- شريط التنقل -->
-    <nav class="navbar">
-        <h1 class="logo">أبو نواف</h1>
-        <div class="nav-links">
-            <button id="adminLoginBtn">لوحة التحكم</button>
-        </div>
-    </nav>
+    <!-- الهيكل الرئيسي -->
+    <div class="app-container">
+        <!-- الشريط الجانبي المتقدم -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img src="logo.webp" alt="شعار الفريق" class="brand-logo">
+                <h1 class="brand-title">فريق أبو نواف</h1>
+            </div>
 
-    <!-- قسم الخدمات -->
-    <section class="services-section">
-        <h2>خدماتنا الأمنية</h2>
-        <div class="services-grid" id="servicesContainer">
-            <!-- سيتم تعبئة الخدمات هنا -->
-        </div>
-    </section>
+            <nav class="sidebar-nav">
+                <a class="nav-item active" data-section="dashboard">
+                    <i class="fas fa-home"></i> لوحة التحكم
+                </a>
+                <a class="nav-item" data-section="services">
+                    <i class="fas fa-shield-alt"></i> إدارة الخدمات
+                </a>
+                <a class="nav-item" data-section="analytics">
+                    <i class="fas fa-chart-pie"></i> التحليلات
+                </a>
+                <a class="nav-item" data-section="users">
+                    <i class="fas fa-users-cog"></i> إدارة المستخدمين
+                </a>
+            </nav>
 
-    <!-- لوحة التحكم -->
-    <div id="adminPanel" class="admin-panel" style="display: none;">
-        <div class="admin-form" id="loginForm">
-            <h3>تسجيل الدخول الإداري</h3>
-            <input type="email" id="adminEmail" placeholder="البريد الإلكتروني">
-            <input type="password" id="adminPassword" placeholder="كلمة المرور">
-            <button onclick="handleAdminLogin()">دخول</button>
-        </div>
+            <div class="sidebar-footer">
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-moon"></i> الوضع الليلي
+                </button>
+            </div>
+        </aside>
 
-        <div class="admin-form" id="serviceForm" style="display: none;">
-            <h3>إدارة الخدمات</h3>
-            <input type="text" id="serviceName" placeholder="اسم الخدمة">
-            <input type="number" id="servicePrice" placeholder="السعر (ريال سعودي)">
-            <textarea id="serviceDesc" placeholder="وصف الخدمة"></textarea>
-            <button onclick="addNewService()">إضافة خدمة</button>
+        <!-- المحتوى الرئيسي -->
+        <main class="main-content">
+            <!-- شريط الأدوات -->
+            <div class="toolbar">
+                <div class="search-container">
+                    <input type="search" placeholder="البحث في الخدمات..." class="search-input" id="searchInput">
+                    <button class="search-btn"><i class="fas fa-search"></i></button>
+                </div>
+                <div class="toolbar-actions">
+                    <button class="btn btn-primary" id="newServiceBtn">
+                        <i class="fas fa-plus-circle"></i> خدمة جديدة
+                    </button>
+                    <div class="user-menu">
+                        <img src="user-avatar.webp" class="user-avatar" alt="صورة المستخدم">
+                        <div class="user-details">
+                            <span class="user-name">إلياس الشوافي</span>
+                            <span class="user-role">مدير النظام</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- جدول الخدمات المتقدم -->
+            <div class="responsive-table">
+                <table class="services-table">
+                    <thead>
+                        <tr>
+                            <th data-sort="name">الخدمة <i class="sort-icon fas fa-sort"></i></th>
+                            <th data-sort="price">السعر <i class="sort-icon fas fa-sort"></i></th>
+                            <th data-sort="duration">المدة <i class="sort-icon fas fa-sort"></i></th>
+                            <th data-sort="status">الحالة <i class="sort-icon fas fa-sort"></i></th>
+                            <th>الإجراءات</th>
+                        </tr>
+                    </thead>
+                    <tbody id="servicesBody">
+                        <!-- البيانات تُحمّل ديناميكيًا -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- نظام التصفح -->
+            <div class="pagination">
+                <button class="page-btn" id="prevPage"><i class="fas fa-chevron-right"></i></button>
+                <span class="page-info" id="pageInfo">الصفحة 1 من 5</span>
+                <button class="page-btn" id="nextPage"><i class="fas fa-chevron-left"></i></button>
+            </div>
+        </main>
+
+        <!-- النماذج المنبثقة -->
+        <div class="modal-overlay" id="authModal">
+            <div class="modal">
+                <div class="modal-header">
+                    <h3><i class="fas fa-user-lock"></i> التحقق من الهوية</h3>
+                    <button class="modal-close" id="closeAuthModal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <!-- محتوى النموذج يُحمّل ديناميكيًا -->
+                </div>
+            </div>
         </div>
     </div>
 
-    <script src="app.js"></script>
+    <!-- السكريبتات -->
+    <script type="module" src="firebase-config.js"></script>
+    <script type="module" src="app.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</body>
+</html><!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بوابة أبو نواف الإدارية</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.0.0/dist/themes/light.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- الهيكل الرئيسي -->
+    <div class="app-container">
+        <!-- الشريط الجانبي المتقدم -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img src="logo.webp" alt="شعار الفريق" class="brand-logo">
+                <h1 class="brand-title">فريق أبو نواف</h1>
+            </div>
+
+            <nav class="sidebar-nav">
+                <a class="nav-item active" data-section="dashboard">
+                    <i class="fas fa-home"></i> لوحة التحكم
+                </a>
+                <a class="nav-item" data-section="services">
+                    <i class="fas fa-shield-alt"></i> إدارة الخدمات
+                </a>
+                <a class="nav-item" data-section="analytics">
+                    <i class="fas fa-chart-pie"></i> التحليلات
+                </a>
+                <a class="nav-item" data-section="users">
+                    <i class="fas fa-users-cog"></i> إدارة المستخدمين
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-moon"></i> الوضع الليلي
+                </button>
+            </div>
+        </aside>
+
+        <!-- المحتوى الرئيسي -->
+        <main class="main-content">
+            <!-- شريط الأدوات -->
+            <div class="toolbar">
+                <div class="search-container">
+                    <input type="search" placeholder="البحث في الخدمات..." class="search-input" id="searchInput">
+                    <button class="search-btn"><i class="fas fa-search"></i></button>
+                </div>
+                <div class="toolbar-actions">
+                    <button class="btn btn-primary" id="newServiceBtn">
+                        <i class="fas fa-plus-circle"></i> خدمة جديدة
+                    </button>
+                    <div class="user-menu">
+                        <img src="user-avatar.webp" class="user-avatar" alt="صورة المستخدم">
+                        <div class="user-details">
+                            <span class="user-name">إلياس الشوافي</span>
+                            <span class="user-role">مدير النظام</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- جدول الخدمات المتقدم -->
+            <div class="responsive-table">
+                <table class="services-table">
+                    <thead>
+                        <tr>
+                            <th data-sort="name">الخدمة <i class="sort-icon fas fa-sort"></i></th>
+                            <th data-sort="price">السعر <i class="sort-icon fas fa-sort"></i></th>
+                            <th data-sort="duration">المدة <i class="sort-icon fas fa-sort"></i></th>
+                            <th data-sort="status">الحالة <i class="sort-icon fas fa-sort"></i></th>
+                            <th>الإجراءات</th>
+                        </tr>
+                    </thead>
+                    <tbody id="servicesBody">
+                        <!-- البيانات تُحمّل ديناميكيًا -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- نظام التصفح -->
+            <div class="pagination">
+                <button class="page-btn" id="prevPage"><i class="fas fa-chevron-right"></i></button>
+                <span class="page-info" id="pageInfo">الصفحة 1 من 5</span>
+                <button class="page-btn" id="nextPage"><i class="fas fa-chevron-left"></i></button>
+            </div>
+        </main>
+
+        <!-- النماذج المنبثقة -->
+        <div class="modal-overlay" id="authModal">
+            <div class="modal">
+                <div class="modal-header">
+                    <h3><i class="fas fa-user-lock"></i> التحقق من الهوية</h3>
+                    <button class="modal-close" id="closeAuthModal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <!-- محتوى النموذج يُحمّل ديناميكيًا -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- السكريبتات -->
+    <script type="module" src="firebase-config.js"></script>
+    <script type="module" src="app.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </body>
 </html>
