@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>أبو نواف | خدمات أمنية سيبرانية</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+</head>
+<body>
+    <!-- شريط التنقل -->
+    <nav class="navbar">
+        <h1 class="logo">أبو نواف</h1>
+        <div class="nav-links">
+            <a href="#services">الخدمات</a>
+            <a href="#contact">تواصل معنا</a>
+            <button id="adminLoginBtn">لوحة التحكم</button>
+        </div>
+    </nav>
+
+    <!-- قسم الخدمات -->
+    <section id="services" class="services-section">
+        <h2>خدماتنا الأمنية</h2>
+        <div class="services-grid" id="servicesContainer"></div>
+    </section>
+
+    <!-- لوحة التحكم -->
+    <div id="adminPanel" class="admin-panel">
+        <div class="admin-form" id="loginForm">
+            <h3>تسجيل الدخول الإداري</h3>
+            <input type="email" id="adminEmail" placeholder="البريد الإلكتروني">
+            <input type="password" id="adminPassword" placeholder="كلمة المرور">
+            <button onclick="handleAdminLogin()">دخول</button>
+        </div>
+
+        <div class="admin-form" id="serviceForm" style="display: none;">
+            <h3>إدارة الخدمات</h3>
+            <input type="text" id="serviceName" placeholder="اسم الخدمة">
+            <input type="number" id="servicePrice" placeholder="السعر (ريال سعودي)">
+            <textarea id="serviceDesc" placeholder="وصف الخدمة"></textarea>
+            <button onclick="addNewService()">إضافة خدمة</button>
+        </div>
+    </div>
+
+    <!-- النصوص البرمجية -->
+    <script src="app.js"></script>
+</body>
+</html>
