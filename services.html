@@ -1,4 +1,3 @@
-html
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
@@ -14,92 +13,61 @@ html
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #0d1117; /* GitHub dark background */
-            color: #c9d1d9; /* GitHub dark text */
+            background-color: #0d1117;
+            color: #c9d1d9;
             direction: rtl;
             text-align: right;
         }
 
-        /* Particles.js background container */
         #particles-js {
             position: fixed;
             width: 100%;
             height: 100%;
             background-color: #0d1117;
-            background-image: url('');
-            background-size: cover;
-            background-position: 50% 50%;
-            background-repeat: no-repeat;
             z-index: -1;
         }
 
-        /* Custom scrollbar */
-        ::-webkit-scrollbar {
-            width: 10px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #0d1117;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #3b82f6;
-            border-radius: 10px;
-            border: 2px solid #0d1117;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #2563eb;
-        }
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: #0d1117; }
+        ::-webkit-scrollbar-thumb { background: #3b82f6; border-radius: 10px; border: 2px solid #0d1117; }
+        ::-webkit-scrollbar-thumb:hover { background: #2563eb; }
 
-        /* Card styles */
         .service-card {
-            background-color: rgba(16, 23, 33, 0.7); /* Semi-transparent dark bg */
-            border: 1px solid #30363d; /* Subtle border */
+            background-color: rgba(16, 23, 33, 0.7);
+            border: 1px solid #30363d;
             transition: all 0.3s ease-in-out;
             backdrop-filter: blur(5px);
             position: relative;
             overflow: hidden;
         }
-
         .service-card:before {
             content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            left: 0;
+            position: absolute; top: 0; right: 0; bottom: 0; left: 0;
             background: radial-gradient(circle at 50% 0, rgba(59, 130, 246, 0.2), transparent 70%);
             opacity: 0;
             transition: opacity 0.4s ease;
         }
-
         .service-card:hover {
             transform: translateY(-8px);
             border-color: #3b82f6;
             box-shadow: 0 0 25px rgba(59, 130, 246, 0.4);
         }
+        .service-card:hover:before { opacity: 1; }
 
-        .service-card:hover:before {
-            opacity: 1;
-        }
-
-        /* Sidebar button styles */
         .sidebar-button {
             border-right: 4px solid transparent;
             transition: all 0.3s ease;
         }
-
         .sidebar-button.active {
-            background-color: #1f2937; /* Darker blue active */
-            border-right-color: #3b82f6; /* Blue accent */
+            background-color: #1f2937;
+            border-right-color: #3b82f6;
             color: #eff6ff;
             font-weight: 600;
         }
-
         .sidebar-button:not(.active):hover {
-             background-color: #374151; /* Lighter gray on hover */
+             background-color: #374151;
              border-right-color: #60a5fa;
         }
-
-        /* Main title gradient underline */
         .title-underline {
             position: relative;
             padding-bottom: 0.75rem;
@@ -107,15 +75,12 @@ html
         .title-underline::after {
             content: '';
             position: absolute;
-            bottom: 0;
-            right: 0;
-            width: 100px;
-            height: 4px;
+            bottom: 0; right: 0;
+            width: 100px; height: 4px;
             background: linear-gradient(to left, #60a5fa, #3b82f6);
             border-radius: 2px;
         }
 
-        /* Primary button style */
         .btn-primary {
             background: linear-gradient(to left, #60a5fa, #3b82f6);
             transition: all 0.3s ease;
@@ -125,72 +90,62 @@ html
             transform: scale(1.05);
             box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
         }
-
     </style>
 </head>
 <body class="flex flex-col min-h-screen">
     <!-- Animated background -->
     <div id="particles-js"></div>
 
-    <div class="flex flex-1 z-10">
+    <div class="flex flex-col md:flex-row flex-1 z-10">
         <!-- Sidebar -->
-        <aside class="w-72 bg-gray-900/70 backdrop-blur-md text-gray-300 p-6 shadow-2xl overflow-y-auto max-h-screen border-l-2 border-gray-700">
-            <h2 class="text-3xl font-extrabold mb-8 text-center text-white">الخدمــات</h2>
-            <nav id="main-categories">
-                <!-- Main categories will be rendered here by JS -->
-            </nav>
+        <aside class="w-full md:w-72 bg-gray-900/70 backdrop-blur-md text-gray-300 p-4 md:p-6 shadow-2xl overflow-y-auto max-h-[50vh] md:max-h-screen border-l-2 border-gray-700 md:sticky md:top-0">
+            <h2 class="text-2xl md:text-3xl font-extrabold mb-6 md:mb-8 text-center text-white">الخدمــات</h2>
+            <nav id="main-categories"></nav>
         </aside>
 
         <!-- Main content area -->
-        <main class="flex-1 p-8 overflow-y-auto">
-            <h1 id="current-category-title" class="text-4xl font-extrabold text-white mb-10 title-underline">اختر قسمًا للبدء</h1>
+        <main class="flex-1 p-4 md:p-8 overflow-y-auto">
+            <h1 id="current-category-title" class="text-2xl md:text-4xl font-extrabold text-white mb-8 md:mb-10 title-underline">اختر قسمًا للبدء</h1>
 
             <!-- Sub-categories Section -->
-            <div id="sub-categories-section" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mb-10">
+            <div id="sub-categories-section" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-8">
                 <!-- Sub-categories will be rendered here by JS -->
             </div>
 
             <!-- Services List Section -->
-            <div id="services-list-section" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mb-10">
+            <div id="services-list-section" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-8">
                 <!-- Services will be rendered here by JS -->
             </div>
 
             <!-- Service Details Section -->
-            <div id="service-details-section" class="bg-gray-900/50 backdrop-blur-sm p-8 rounded-xl shadow-inner hidden border border-gray-700">
-                <h3 id="service-detail-name" class="text-3xl font-bold text-blue-400 mb-6 pb-3 border-b-2 border-blue-500/50"></h3>
-                
-                <div class="bg-gray-800/60 p-6 rounded-lg shadow-sm mb-6">
-                    <p id="service-detail-description" class="text-gray-300 leading-relaxed text-lg"></p>
+            <div id="service-details-section" class="bg-gray-900/50 backdrop-blur-sm p-4 md:p-8 rounded-xl shadow-inner hidden border border-gray-700">
+                <h3 id="service-detail-name" class="text-xl md:text-3xl font-bold text-blue-400 mb-4 md:mb-6 pb-2 md:pb-3 border-b-2 border-blue-500/50"></h3>
+                <div class="bg-gray-800/60 p-4 md:p-6 rounded-lg shadow-sm mb-4 md:mb-6">
+                    <p id="service-detail-description" class="text-gray-300 leading-relaxed text-base md:text-lg"></p>
                 </div>
-                
-
-                <div class="mb-6 bg-gray-800/60 p-6 rounded-lg shadow-sm">
-                    <h4 class="text-xl font-semibold text-white mb-4 border-b border-gray-600 pb-2">خطوات العمل:</h4>
-                    <ul id="service-detail-steps" class="list-disc list-inside text-gray-400 space-y-3 text-base pr-4">
-                        <!-- Steps will be rendered here -->
-                    </ul>
+                <div class="mb-4 md:mb-6 bg-gray-800/60 p-4 md:p-6 rounded-lg shadow-sm">
+                    <h4 class="text-base md:text-xl font-semibold text-white mb-2 md:mb-4 border-b border-gray-600 pb-1 md:pb-2">خطوات العمل:</h4>
+                    <ul id="service-detail-steps" class="list-disc list-inside text-gray-400 space-y-2 md:space-y-3 text-sm md:text-base pr-2 md:pr-4"></ul>
                 </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="bg-gradient-to-br from-purple-900/50 to-gray-800/50 p-6 rounded-lg shadow-md border border-purple-600">
-                        <h4 class="text-xl font-semibold text-white mb-3 pb-2">الرسوم المقدرة:</h4>
-                        <p id="service-detail-fees" class="text-purple-300 font-extrabold text-3xl"></p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+                    <div class="bg-gradient-to-br from-purple-900/50 to-gray-800/50 p-4 md:p-6 rounded-lg shadow-md border border-purple-600">
+                        <h4 class="text-base md:text-xl font-semibold text-white mb-2 md:mb-3 pb-1 md:pb-2">الرسوم المقدرة:</h4>
+                        <p id="service-detail-fees" class="text-purple-300 font-extrabold text-xl md:text-3xl"></p>
                     </div>
-                    <div class="bg-gradient-to-br from-teal-900/50 to-gray-800/50 p-6 rounded-lg shadow-md border border-teal-500">
-                        <h4 class="text-xl font-semibold text-white mb-3 pb-2">الوقت اللازم للإنجاز:</h4>
-                        <p id="service-detail-time" class="text-teal-300 font-extrabold text-3xl"></p>
+                    <div class="bg-gradient-to-br from-teal-900/50 to-gray-800/50 p-4 md:p-6 rounded-lg shadow-md border border-teal-500">
+                        <h4 class="text-base md:text-xl font-semibold text-white mb-2 md:mb-3 pb-1 md:pb-2">الوقت اللازم للإنجاز:</h4>
+                        <p id="service-detail-time" class="text-teal-300 font-extrabold text-xl md:text-3xl"></p>
                     </div>
                 </div>
-
-                <button id="back-to-services-btn" class="mt-10 text-white font-bold py-3 px-8 rounded-full shadow-lg btn-primary">
-                    <span class="text-lg">العودة إلى الخدمات</span>
+                <button id="back-to-services-btn" class="mt-8 md:mt-10 text-white font-bold py-2 md:py-3 px-6 md:px-8 rounded-full shadow-lg btn-primary">
+                    <span class="text-base md:text-lg">العودة إلى الخدمات</span>
                 </button>
             </div>
         </main>
     </div>
 
-    <footer class="bg-gray-900/70 backdrop-blur-sm text-gray-400 text-center p-5 mt-auto shadow-inner border-t-2 border-gray-700 z-10">
-        <p class="text-lg">&copy; 2025 فريق الأمن السيبراني. جميع الحقوق محفوظة. <span class="text-blue-400 font-semibold">نحن درعك الرقمي.</span></p>
+    <footer class="bg-gray-900/70 backdrop-blur-sm text-gray-400 text-center p-4 md:p-5 mt-auto shadow-inner border-t-2 border-gray-700 z-10">
+        <p class="text-sm md:text-lg">&copy; 2025 فريق الأمن السيبراني. جميع الحقوق محفوظة. <span class="text-blue-400 font-semibold">نحن درعك الرقمي.</span></p>
     </footer>
 
     <script>
