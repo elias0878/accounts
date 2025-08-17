@@ -10,7 +10,7 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        @import url("https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap");
+        @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap');
         
         :root {
             /* نظام ألوان راقي ومحدود */
@@ -445,19 +445,10 @@
                 font-size: 1.6rem;
             }
             
-            .cta-buttons {
-                flex-wrap: nowrap;
-                overflow-x: auto;
-                -webkit-overflow-scrolling: touch;
-                justify-content: flex-start;
-                padding: 0 15px;
-            }
-            
             .cta-button {
-                flex-shrink: 0;
-                width: auto;
-                min-width: 150px;
-                padding: 10px 15px;
+                width: 100%;
+                justify-content: center;
+                padding: 10px;
             }
         }
     </style>
@@ -513,186 +504,224 @@
                     </div>
                     <div>تيك توك</div>
                 </a>
-                <a href="https://x.com/ksa_hack01" class="social-card" target="_blank" rel="noopener">
+                <a href="https://twitter.com/KSA_hack02" class="social-card" target="_blank" rel="noopener">
                     <div class="social-icon">
-                        <i class="fab fa-x-twitter"></i>
+                        <i class="fab fa-twitter"></i>
                     </div>
                     <div>تويتر</div>
                 </a>
-                <a href="https://elias0878.github.io/Services/" class="social-card" target="_blank" rel="noopener">
+                <a href="https://t.me/KSA_hack01" class="social-card" target="_blank" rel="noopener">
+                    <div class="social-icon">
+                        <i class="fab fa-telegram-plane"></i>
+                    </div>
+                    <div>تلجرام</div>
+                </a>
+                <a href="https://elias0878.github.io/Services/" class="social-card">
                     <div class="social-icon">
                         <i class="fas fa-cogs"></i>
                     </div>
-                    <div>الخدمات</div>
+                    <div>الخدمات و الأسعار</div>
+                </a>
+                <a href="https://github.com/elias0878" class="social-card" target="_blank" rel="noopener">
+                    <div class="social-icon">
+                        <i class="fab fa-github"></i>
+                    </div>
+                    <div>جيت هاب</div>
                 </a>
             </div>
         </div>
     </div>
-
+    
+    <div class="footer-cta">
+        <div class="cta-buttons">
+            <a href="https://t.me/KSA_hack01" class="cta-button" target="_blank" rel="noopener">
+                <i class="fas fa-comments"></i> آراء العملاء
+            </a>
+            <button class="cta-button" onclick="showTerms()">
+                <i class="fas fa-file-contract"></i> الشروط والخطوات
+            </button>
+            <a href="https://abu-nawaf-cyber-guard.lovable.app/" class="cta-button" target="_blank" rel="noopener">
+                <i class="fas fa-globe"></i> الموقع الالكتروني
+            </a>
+        </div>
+        <script type="text/javascript" src="https://cdn.seojuice.io/suggestions.v1.js" defer></script>
+    </div>
+    
+    <div id="termsModal" class="terms-modal">
+        <div class="terms-content">
+            <span class="close-btn" onclick="closeTerms()">&times;</span>
+            <h2 style="text-align: center; color: var(--primary); margin-bottom: 30px;">
+                <i class="fas fa-exclamation-circle"></i> نظام العمل وشروط الدفع
+            </h2>
+            <div class="terms-section">
+                <h3><i class="fas fa-list"></i> البنود الأساسية</h3>
+                <ul style="list-style-type: none; padding-right: 20px; margin-top: 10px;">
+                    <li style="margin-bottom: 10px; display: flex; align-items: flex-start; gap: 10px;">
+                        <i class="fas fa-check-circle" style="color: var(--success); flex-shrink: 0; margin-top: 4px;"></i>
+                        <span>بدء العمل: يتم الشروع في التنفيذ بعد موافقتك على التقرير التفصيلي.</span>
+                    </li>
+                    <li style="margin-bottom: 10px; display: flex; align-items: flex-start; gap: 10px;">
+                        <i class="fas fa-exclamation-circle" style="color: var(--danger); flex-shrink: 0; margin-top: 4px;"></i>
+                        <span>بعد بدء العمل، لا يمكن التراجع أو الاسترداد</span>
+                    </li>
+                    <li style="margin-bottom: 10px; display: flex; align-items: flex-start; gap: 10px;">
+                        <i class="fas fa-info-circle" style="color: var(--accent); flex-shrink: 0; margin-top: 4px;"></i>
+                        <span>إما خصم أو تقسيط؛ لا يمكن الجمع بينهما.</span>
+                    </li>
+                    <li style="margin-bottom: 10px; display: flex; align-items: flex-start; gap: 10px;">
+                        <i class="fas fa-edit" style="color: var(--accent); flex-shrink: 0; margin-top: 4px;"></i>
+                        <span>أي تعديل بعد البدء قد يستلزم رسومًا إضافية.</span>
+                    </li>
+                    <li style="margin-bottom: 10px; display: flex; align-items: flex-start; gap: 10px;">
+                        <i class="fas fa-lock" style="color: var(--danger); flex-shrink: 0; margin-top: 4px;"></i>
+                        <span>يُمنع نشر تفاصيل العمل دون إذن.</span>
+                    </li>
+                    <li style="display: flex; align-items: flex-start; gap: 10px;">
+                        <i class="fas fa-file-alt" style="color: var(--success); flex-shrink: 0; margin-top: 4px;"></i>
+                        <span>تسليم تقرير توضيحي شامل قبل البدء يتضمن :
+                            <ul style="margin-right: 20px; margin-top: 8px; padding-left: 15px;">
+                                <li style="margin-bottom: 5px; position: relative; padding-left: 15px;">المدة الزمنية المتوقعة</li>
+                                <li style="margin-bottom: 5px; position: relative; padding-left: 15px;">نسبة النجاح المحتملة</li>
+                                <li style="margin-bottom: 5px; position: relative; padding-left: 15px;">الرسوم التفصيلية</li>
+                                <li style="position: relative; padding-left: 15px;">ولن يتم بدء التنفيذ الا بعد الاطلاع عليه و الموافقه</li>
+                            </ul>
+                        </span>
+                    </li>
+                </ul>
+            </div>
+            <div class="terms-section" style="border-right: 3px solid var(--accent);">
+                <h3><i class="fas fa-tasks"></i> خطة العمل و الخطوات</h3>
+                <ol style="line-height: 2; padding-right: 20px; margin-top: 10px;">
+                    <li style="margin-bottom: 8px;">استقبال أهداف العميل</li>
+                    <li style="margin-bottom: 8px;">جمع المعلومات والتدقيق</li>
+                    <li style="margin-bottom: 8px;">تقييم الأهداف والحلول البديلة</li>
+                    <li style="margin-bottom: 8px;">إعداد تقرير توضيحي شامل (مدة العمل - نسب النجاح - الرسوم)</li>
+                    <li style="margin-bottom: 8px;">التاكيد على التقرير و المتابعه</li>
+                    <li style="margin-bottom: 8px;">بدء التنفيذ الفعلي</li>
+                    <li>استعراض النتائج ودفع الرسوم</li>
+                </ol>
+                <p style="color: var(--danger); margin-top: 15px; padding: 15px; background-color: rgba(229, 62, 62, 0.05); border-radius: 8px; border-left: 3px solid var(--danger);">
+                    <i class="fas fa-lightbulb" style="margin-left: 5px;"></i> ملاحظة: العملاء يدفعون الرسوم فقط بعد الانجاز .. بينما العملاء الجدد و المتعاملين معنا لاول مره يجب توفير ضمان بسيط لكي يتم اعتمادهم و الدفع بعد الانجاز ..او انه سيتم دفع 50% اثناء العمل و تحديدا عند اكمال 50% منه و توثيق ذلك 
+                </p>
+            </div>
+            <div style="text-align: center; margin-top: 30px;">
+                <button class="cta-button" onclick="handleAgreement()" 
+                        style="padding: 10px 25px; font-size: 0.95rem;">
+                    <i class="fas fa-check"></i> فهمت
+                </button>
+            </div>
+        </div>
+    </div>
+    
     <!-- زر المساعد الذكي العائم -->
     <button class="chat-button" id="chatButton">
         <i class="fas fa-robot"></i>
     </button>
-
-    <!-- نافذة الدردشة -->
     <div class="chat-modal" id="chatModal">
-        <div class="close-chat" id="closeChat">×</div>
-        <iframe src="https://chatgpt.com/" title="مساعد ذكي"></iframe>
-    </div>
-
-    <!-- نافذة الشروط والأحكام -->
-    <div class="terms-modal" id="termsModal">
-        <div class="terms-content">
-            <div class="close-btn" id="closeTerms">×</div>
-            <h2 style="text-align: center; margin-bottom: 30px; color: var(--primary);">
-                <i class="fas fa-file-contract"></i> الشروط والأحكام
-            </h2>
-            
-            <div class="terms-section">
-                <h3><i class="fas fa-shield-alt"></i> الخدمات المقدمة</h3>
-                <p>نحن نقدم خدمات الهكر الأخلاقي واستعادة الحسابات المخترقة وحماية الأنظمة الرقمية. جميع خدماتنا تتم وفقاً للقوانين المحلية والدولية.</p>
-            </div>
-            
-            <div class="terms-section">
-                <h3><i class="fas fa-user-check"></i> مسؤولية العميل</h3>
-                <p>يجب على العميل تقديم إثبات ملكية الحساب أو النظام المراد استعادته أو حمايته. كما يجب الحصول على الموافقات القانونية اللازمة.</p>
-            </div>
-            
-            <div class="terms-section">
-                <h3><i class="fas fa-lock"></i> السرية والخصوصية</h3>
-                <p>نحن ملتزمون بالحفاظ على سرية جميع المعلومات والبيانات المقدمة من العملاء. لن يتم مشاركة أي معلومات مع أطراف ثالثة.</p>
-            </div>
-            
-            <div class="terms-section">
-                <h3><i class="fas fa-dollar-sign"></i> الدفع والاسترداد</h3>
-                <p>يتم الدفع مقدماً قبل بدء العمل. في حالة عدم إمكانية تنفيذ الخدمة لأسباب تقنية، سيتم استرداد المبلغ كاملاً.</p>
-            </div>
-            
-            <div class="terms-section">
-                <h3><i class="fas fa-gavel"></i> إخلاء المسؤولية</h3>
-                <p>نحن غير مسؤولين عن أي أضرار قد تنتج عن سوء استخدام الخدمات المقدمة أو استخدامها لأغراض غير قانونية.</p>
-            </div>
+        <div class="close-chat" id="closeChat">
+            <i class="fas fa-times"></i>
         </div>
+        <iframe src="https://cdn.botpress.cloud/webchat/v3.2/shareable.html?configUrl=https://files.bpcontent.cloud/2025/08/17/15/20250817152223-MHKIV5AU.json"></iframe>
     </div>
-
-    <!-- تذييل الصفحة مع أزرار الإجراءات -->
-    <div class="footer-cta">
-        <div class="cta-buttons">
-            <a href="https://wa.me/966555555555" class="cta-button" target="_blank" rel="noopener">
-                <i class="fab fa-whatsapp"></i> واتساب
-            </a>
-            <a href="tel:+966555555555" class="cta-button">
-                <i class="fas fa-phone"></i> اتصال
-            </a>
-            <button class="cta-button" id="showTerms">
-                <i class="fas fa-file-contract"></i> الشروط
-            </button>
-            <button class="cta-button" id="showSteps">
-                <i class="fas fa-list-ol"></i> الخطوات
-            </button>
-        </div>
-    </div>
-
+    
     <script>
-        // إدارة حالة العمل
-        function updateWorkStatus() {
+        // نظام حالة العمل المطوّر
+        let statusInterval;
+        function checkWorkStatus() {
             const now = new Date();
-            const hour = now.getHours();
+            const hour = now.getHours() + (now.getMinutes()/60);
             const day = now.getDay();
-            const statusIndicator = document.getElementById('statusIndicator');
-            
-            // أيام العمل: الأحد إلى الخميس (0 = الأحد، 5 = الجمعة)
-            // ساعات العمل: من 14:30 إلى 24:00
-            const isWorkingDay = day !== 5; // ليس يوم الجمعة
-            const isWorkingHour = hour >= 14 && hour < 24;
-            
-            if (isWorkingDay && isWorkingHour) {
-                statusIndicator.innerHTML = '<span>●</span> متاح الآن';
-                statusIndicator.classList.remove('offline');
+            const statusElem = document.getElementById('statusIndicator');
+            // تحديد حالة العمل
+            const isFriday = day === 5; // الجمعة يوم إجازة
+            const isHoliday = false; // يمكن إضافة منطق للعطل الرسمية
+            const isWorkingHours = (hour >= 14.5 && hour < 24) || (hour >= 0 && hour < 0.5);
+            if(isFriday || isHoliday || !isWorkingHours) {
+                statusElem.classList.add('offline');
+                statusElem.innerHTML = '<span>●</span> مغلق حالياً';
             } else {
-                statusIndicator.innerHTML = '<span>●</span> غير متاح';
-                statusIndicator.classList.add('offline');
+                statusElem.classList.remove('offline');
+                statusElem.innerHTML = '<span>●</span> متاح الآن';
             }
         }
         
         // تحديث الحالة كل دقيقة
-        updateWorkStatus();
-        setInterval(updateWorkStatus, 60000);
+        function initStatusChecker() {
+            checkWorkStatus();
+            statusInterval = setInterval(checkWorkStatus, 60000); // تحديث كل دقيقة
+        }
         
-        // إدارة زر المساعد الذكي
-        const chatButton = document.getElementById('chatButton');
-        const chatModal = document.getElementById('chatModal');
-        const closeChat = document.getElementById('closeChat');
+        // نظام الشروط والاتفاقية
+        function showTerms() {
+            const modal = document.getElementById('termsModal');
+            modal.style.display = 'block';
+            setTimeout(() => {
+                modal.classList.add('active');
+            }, 10);
+        }
         
-        chatButton.addEventListener('click', () => {
-            chatModal.style.display = chatModal.style.display === 'block' ? 'none' : 'block';
-        });
+        function closeTerms() {
+            const modal = document.getElementById('termsModal');
+            modal.classList.remove('active');
+            setTimeout(() => {
+                modal.style.display = 'none';
+            }, 300);
+        }
         
-        closeChat.addEventListener('click', () => {
-            chatModal.style.display = 'none';
-        });
-        
-        // إدارة نافذة الشروط والأحكام
-        const showTerms = document.getElementById('showTerms');
-        const termsModal = document.getElementById('termsModal');
-        const closeTerms = document.getElementById('closeTerms');
-        
-        showTerms.addEventListener('click', () => {
-            termsModal.style.display = 'block';
-            setTimeout(() => termsModal.classList.add('active'), 10);
-        });
-        
-        closeTerms.addEventListener('click', () => {
-            termsModal.classList.remove('active');
-            setTimeout(() => termsModal.style.display = 'none', 300);
-        });
-        
-        termsModal.addEventListener('click', (e) => {
-            if (e.target === termsModal) {
-                termsModal.classList.remove('active');
-                setTimeout(() => termsModal.style.display = 'none', 300);
-            }
-        });
-        
-        // إدارة زر الخطوات
-        const showSteps = document.getElementById('showSteps');
-        
-        showSteps.addEventListener('click', () => {
+        function handleAgreement() {
             Swal.fire({
-                title: 'خطوات الحصول على الخدمة',
-                html: `
-                    <div style="text-align: right; line-height: 2;">
-                        <p><strong>1.</strong> تواصل معنا عبر واتساب أو الهاتف</p>
-                        <p><strong>2.</strong> اشرح طبيعة المشكلة أو الخدمة المطلوبة</p>
-                        <p><strong>3.</strong> قدم الإثباتات اللازمة لملكية الحساب</p>
-                        <p><strong>4.</strong> احصل على عرض سعر مفصل</p>
-                        <p><strong>5.</strong> ادفع المبلغ المتفق عليه</p>
-                        <p><strong>6.</strong> انتظر تنفيذ الخدمة خلال المدة المحددة</p>
-                        <p><strong>7.</strong> استلم النتائج والتقرير النهائي</p>
-                    </div>
-                `,
-                icon: 'info',
-                confirmButtonText: 'فهمت',
-                confirmButtonColor: '#3182CE',
-                customClass: {
-                    popup: 'swal-rtl'
-                }
+                icon: 'success',
+                title: 'شكر خاص',
+                text: 'شكرا لك على قراءة هذه التفاصيل، وهذا يفيد حيث أنه يشرح كل ما يجب عليك أن تعرفه بخصوص عملنا والخطوات. يجب أن تعرف أن هذه الخطوات والشروط وضعت لكي تضمن لك حقك الكامل، وهي تميزنا عن غيرنا من المحتالين والأشخاص عديمي الضمير والانسانيه.',
+                confirmButtonText: 'متابعة',
+                confirmButtonColor: '#3182CE'
             });
-        });
+            closeTerms();
+        }
         
-        // إضافة CSS لـ SweetAlert RTL
-        const style = document.createElement('style');
-        style.textContent = `
-            .swal-rtl {
-                direction: rtl;
-                text-align: right;
+        // إغلاق النافذة عند النقر خارج المحتوى
+        window.onclick = function(event) {
+            const modal = document.getElementById('termsModal');
+            if(event.target === modal) {
+                closeTerms();
             }
-            .swal-rtl .swal2-title {
-                text-align: center;
+        }
+        
+        // تهيئة الموقع عند التحميل
+        window.onload = function() {
+            initStatusChecker();
+            // إضافة تأثيرات للبطاقات عند التمرير
+            const socialCards = document.querySelectorAll('.social-card');
+            socialCards.forEach((card, index) => {
+                setTimeout(() => {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 100);
+            });
+        }
+        
+        // تحسين الأداء: إيقاف التحديث عند إغلاق الصفحة
+        window.onbeforeunload = function() {
+            clearInterval(statusInterval);
+        }
+        
+        // وظائف التحكم في مساعد الدردشة
+        document.getElementById('chatButton').addEventListener('click', function() {
+            const modal = document.getElementById('chatModal');
+            modal.style.display = modal.style.display === 'block' ? 'none' : 'block';
+        });
+
+        document.getElementById('closeChat').addEventListener('click', function() {
+            document.getElementById('chatModal').style.display = 'none';
+        });
+
+        // إغلاق المساعد عند النقر خارج النافذة
+        window.addEventListener('click', function(event) {
+            const modal = document.getElementById('chatModal');
+            if (event.target === modal) {
+                modal.style.display = 'none';
             }
-        `;
-        document.head.appendChild(style);
+        });
     </script>
 </body>
 </html>
-
