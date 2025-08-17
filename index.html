@@ -569,3 +569,27 @@
                         <span>إما خصم أو تقسيط؛ لا يمكن الجمع بينهما.</span>
                     </li>
                     <li style="margin-bottom: 10px; display: flex; align-items: flex-sta
+
+    <!-- زر المساعد الذكي العائم -->
+    <button class="chat-button" onclick="toggleChat()">
+        <i class="fas fa-robot"></i>
+    </button>
+
+    <!-- نافذة الدردشة المنبثقة -->
+    <div class="chat-modal" id="chatModal">
+        <span class="close-chat" onclick="toggleChat()">&times;</span>
+        <iframe src="https://elias0878.github.io/AI-Assistant/" frameborder="0"></iframe>
+    </div>
+
+    <script>
+        function toggleChat() {
+            const chatModal = document.getElementById('chatModal');
+            if (chatModal.style.display === 'block') {
+                chatModal.style.display = 'none';
+            } else {
+                chatModal.style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>
