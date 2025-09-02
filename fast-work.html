@@ -1,0 +1,353 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>خدمات مكافحه الابتزاز والجرائم الإلكترونية في المملكه </title>
+  <meta name="description" content="حدمات مخصّصة للأفراد في السعودية: دعم معنوي وتقني لمكافحة الابتزاز الإلكتروني. إجراءات سريعه، خطوات واضحة، و مساعده للضحايا مع حلول عملية وآمنة.">
+  <meta name="keywords" content="ابتزاز الكتروني, مكافحة الابتزاز, دعم نفسي, حذف محتوى, هكر اخلاقي, حذف صور , حذف حسابات , اختراق , استرجاع حسابات, السعودية">
+  <meta name="robots" content="index,follow">
+
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #071526;
+      --card: #0b1a2b;
+      --accent: #f4c542;
+      --text: #f2f6fa;
+      --muted: #aebdca;
+      --transition: all 0.3s ease;
+    }
+    
+    body {
+      margin: 0;
+      font-family: 'Cairo', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    
+    .wrap {
+      max-width: 960px;
+      margin: auto;
+      padding: 20px;
+      animation: fadeIn 1s ease;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+      padding: 20px;
+    }
+    
+    h1 {
+      margin: 0;
+      color: var(--accent);
+      font-size: 32px;
+      margin-bottom: 20px;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+    
+    p {
+      line-height: 1.8;
+      margin-bottom: 1em;
+    }
+    
+    .card {
+      background: var(--card);
+      border-radius: 16px;
+      padding: 25px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      transition: var(--transition);
+    }
+    
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+    }
+    
+    .section-title {
+      color: var(--accent);
+      font-size: 22px;
+      margin-bottom: 15px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .section-title::before {
+      content: "•";
+      color: var(--accent);
+    }
+    
+    ul {
+      margin: 0;
+      padding: 0 25px;
+      list-style-type: none;
+    }
+    
+    li {
+      margin-bottom: 12px;
+      position: relative;
+      padding-right: 20px;
+    }
+    
+    li::before {
+      content: "←";
+      color: var(--accent);
+      position: absolute;
+      right: -20px;
+    }
+    
+    .highlight {
+      background: rgba(244,197,66,0.1);
+      padding: 15px;
+      border-radius: 12px;
+      margin-top: 15px;
+      color: var(--accent);
+      font-weight: 600;
+      border: 1px solid rgba(244,197,66,0.2);
+    }
+    
+    footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 14px;
+      margin-top: 40px;
+      padding: 20px;
+      border-top: 1px solid rgba(174,189,202,0.1);
+    }
+
+    .read-more-btn {
+      display: block;
+      width: max-content;
+      margin: 30px auto;
+      padding: 12px 30px;
+      background: var(--accent);
+      color: var(--bg);
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: var(--transition);
+    }
+
+    .read-more-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 12px rgba(244,197,66,0.3);
+    }
+
+    .contact-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      justify-content: center;
+      margin: 30px 0;
+    }
+
+    .contact-btn {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 25px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, rgba(255,255,255,0.1), rgba(255,255,255,0));
+      transition: var(--transition);
+    }
+
+    .contact-btn:hover::before {
+      transform: translateX(100%);
+    }
+
+    .contact-btn:hover {
+      transform: translateY(-3px);
+    }
+
+    .contact-btn.primary {
+      background: #25D366;
+      color: white;
+    }
+
+    .contact-btn.twitter {
+      background: #1DA1F2;
+      color: white;
+    }
+
+    .contact-btn.snapchat {
+      background: #FFFC00;
+      color: black;
+    }
+
+    .contact-btn.website {
+      background: var(--accent);
+      color: var(--bg);
+    }
+
+    .urgent-help {
+      background: linear-gradient(45deg, rgba(244,197,66,0.1), rgba(244,197,66,0.2));
+      border-radius: 16px;
+      padding: 25px;
+      text-align: center;
+      margin: 30px 0;
+      border: 1px solid rgba(244,197,66,0.3);
+    }
+
+    .urgent-help h2 {
+      color: var(--accent);
+      margin-bottom: 15px;
+    }
+
+    .pulse {
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+
+    @media (max-width: 768px) {
+      .wrap {
+        padding: 15px;
+      }
+      
+      h1 {
+        font-size: 26px;
+      }
+      
+      .card {
+        padding: 20px;
+      }
+
+      .contact-buttons {
+        flex-direction: column;
+      }
+
+      .contact-btn {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>خدمات مكافحه الابتزاز والجرائم الإلكترونية في المملكه </h1>
+      <p>نحن هنا لمساعدتك. لا تقلق، لست وحدك. هدفنا أن نساعدك  ونأخذ بيدك خطوة بخطوة لحل المشكلة بأمان وهدوء و باسرع وقت ممكن .</p>
+    </header>
+
+    <section class="card">
+      <div class="section-title">أولاً: تذكير مهم</div>
+      <p>إذا كنت تتعرض للابتزاز الإلكتروني، أهم شيء الآن أن <strong>تهدأ</strong>. نحن نفهم شعور الخوف والقلق، لكن اعلم أن لكل مشكلة حل، وأنك لست وحدك. وجودك هنا هو أول خطوة صحيحة.</p>
+      <div class="highlight">💡  لا تستجب للمبتز ولا ترسل له أي مبالغ مالية. او تتفاوض معه نهائيا دع فريقنا يتكفل بكل شي </div>
+    </section>
+
+    <section class="card">
+      <div class="section-title">خدماتنا لك</div>
+      <ul>
+        <li><strong>الدعم و الارشاد الفوري:</strong> نساعدك على استعادة هدوئك ونوجّهك لما يجب فعله فوراً.</li>
+        <li><strong>حفظ الأدلة:</strong> نرشدك لكيفية جمع وحفظ الرسائل والصور بشكل صحيح.</li>
+        <li><strong>حذف المحتوى:</strong> نعمل على حذف الصور أو الفيديوهات المنتشرة باسرع وقت ممكن.</li>
+        <li><strong>استرجاع الحسابات:</strong> إذا تم اختراق حسابك،نقوم باستعادته و تامينه.</li>
+        <li><strong>تأمين الأجهزة:</strong>   نفحص جهازك ونساعدك على إزالة أي برامج خبيثة وإعادة الأمان له و حمايته بشكل صحيح.</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <div class="section-title">خطوات سريعة للتصرف</div>
+      <ul>
+        <li>توقف عن التواصل مع المبتز فوراً.</li>
+        <li>التقط صور شاشة أو خزّن الرسائل كأدلة.</li>
+        <li>لا تحذف أي شيء قبل أن نتأكد من حفظه.</li>
+        <li>غيّر كلمات مرور حساباتك من جهاز آمن.</li>
+      </ul>
+      <div class="highlight">📌  نحن نتابع معك كل خطوة حتى انتهاء المشكلة بالكامل .</div>
+    </section>
+
+    <section class="card">
+      <div class="section-title">لماذا تختارنا؟</div>
+<p>لأننا لا نكتفي بالدعم، بل نُسقط شبكة الابتزاز بفريقنا التقني القوي الذي يُحبط عشرات الهجمات يومياً بالتنسيق المباشر مع أعلى الجهات الأمنية والحكومية لاسترداد سيطرتك الكاملة في دقائق.</p>    </section>
+
+    <section class="card">
+      <div class="section-title">مستويات الخدمة</div>
+      <ul>
+        <li><strong>خدمة عاجلة:</strong> للتدخل السريع وتقديم خطوات فورية للاستعاده و القضاء على المبتز.</li>
+        <li><strong>خدمة متقدمة:</strong> تشمل جمع الأدلة وحذف المحتوى و اغلاق و حذف الحسابات و الصور و البيانات و ايضا فورمات و المزيد من الخدمات التامنيه .</li>
+        <li><strong>خدمة شاملة:</strong> متابعة كاملة حتى إنهاء القضية وتأمينك بالكامل مع  التنسيق مع الجهات المختصه تحسبا لاي اخطاء .</li>
+      </ul>
+    </section>
+
+    <div class="urgent-help pulse">
+      <h2>لا تدع المشكلة تتفاقم - نحن هنا للمساعدة الآن</h2>
+      <p>كل دقيقة مهمة في حالات الابتزاز. فريقنا المتخصص جاهز للتدخل السريع والمساعدة الفورية على مدار الساعة. تواصل معنا الآن للحصول على حل سريع وآمن.</p>
+    </div>
+
+    <div class="contact-buttons">
+      <a href="https://www.snapchat.com/add/ksa.hack01" class="contact-btn snapchat" target="_blank">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.04 14.69 2 12.04 2M12.05 3.67C14.25 3.67 16.31 4.53 17.87 6.09C19.42 7.65 20.28 9.72 20.28 11.92C20.28 16.46 16.58 20.15 12.04 20.15C10.56 20.15 9.11 19.76 7.85 19L7.55 18.83L4.43 19.65L5.26 16.61L5.06 16.29C4.24 15 3.8 13.47 3.8 11.91C3.81 7.37 7.5 3.67 12.05 3.67M8.53 7.33C8.37 7.33 8.1 7.39 7.87 7.64C7.65 7.89 7 8.5 7 9.71C7 10.93 7.89 12.1 8 12.27C8.14 12.44 9.76 14.94 12.25 16C12.84 16.27 13.3 16.42 13.66 16.53C14.25 16.72 14.79 16.69 15.22 16.63C15.7 16.56 16.68 16.03 16.89 15.45C17.1 14.87 17.1 14.38 17.04 14.27C16.97 14.17 16.81 14.11 16.56 14C16.31 13.86 15.09 13.26 14.87 13.18C14.64 13.1 14.5 13.06 14.31 13.3C14.15 13.55 13.67 14.11 13.53 14.27C13.38 14.44 13.24 14.46 13 14.34C12.74 14.21 11.94 13.95 11 13.11C10.26 12.45 9.77 11.64 9.62 11.39C9.5 11.15 9.61 11 9.73 10.89C9.84 10.78 10 10.6 10.1 10.45C10.23 10.31 10.27 10.2 10.35 10.04C10.43 9.87 10.39 9.73 10.33 9.61C10.27 9.5 9.77 8.26 9.56 7.77C9.36 7.29 9.16 7.35 9 7.34C8.86 7.34 8.7 7.33 8.53 7.33Z" fill="currentColor"/></svg>
+        تواصل معنا على سناب شات
+      </a>
+      <a href="https://twitter.com/KSA_hack02" class="contact-btn twitter" target="_blank">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M22.46 6c-.77.35-1.6.58-2.46.69.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07 4.28 4.28 0 0 0 4 2.98 8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21 16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56.84-.6 1.56-1.36 2.14-2.23z" fill="currentColor"/></svg>
+        تابعنا على تويتر
+      </a>
+      <a href="https://elias0878.github.io/accounts/" class="contact-btn website" target="_blank">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z" fill="currentColor"/></svg>
+        الموقع الرئيسي
+      </a>
+    </div>
+
+    <footer>
+      هذه الصفحة للتعريف بالخدمات المخصّصة لمكافحة الابتزاز الإلكتروني للأفراد في السعودية. شعارنا  الأمان و الكفائه .
+    </footer>
+    
+    <a href="all-fast.html" class="read-more-btn">المزيد من التفاصيل ←</a>
+  </div>
+
+  <script>
+    // Add smooth scrolling and fade-in animations
+    document.addEventListener('DOMContentLoaded', () => {
+      const cards = document.querySelectorAll('.card');
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+          }
+        });
+      }, { threshold: 0.1 });
+
+      cards.forEach(card => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(20px)';
+        card.style.transition = 'all 0.5s ease';
+        observer.observe(card);
+      });
+    });
+  </script>
+</body>
+</html>
