@@ -1,55 +1,114 @@
+/**
+ * ========================================
+ * فريق ابونواف - ملف الأنماط الرئيسي
+ * ========================================
+ * الوصف: ملف CSS الرئيسي للموقع
+ * الإصدار: 2.0
+ * التاريخ: 2025
+ * ========================================
+ */
+
+/* ========================================
+   المتغيرات العامة (Variables)
+   ======================================== */
 :root {
+    /* الألوان الأساسية */
     --primary: #2C3E50;
     --secondary: #3498DB;
     --success: #27AE60;
     --danger: #E74C3C;
+    --warning: #F39C12;
+    --info: #17A2B8;
+    
+    /* ألوان النص والخلفية */
     --text: #2C3E50;
+    --text-light: #7F8C8D;
     --bg: #F8F9FA;
+    --bg-white: #FFFFFF;
+    
+    /* الحدود والظلال */
     --border: #ECF0F1;
-    --shadow: 0 4px 12px rgba(0,0,0,0.1);
+    --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    --shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.15);
+    
+    /* الانتقالات */
     --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-fast: all 0.15s ease;
+    
+    /* الحدود */
+    --border-radius: 12px;
+    --border-radius-sm: 8px;
+    --border-radius-lg: 16px;
 }
 
-/* التهيئة العامة */
-* {
+/* ========================================
+   التهيئة العامة (Reset & Base)
+   ======================================== */
+*,
+*::before,
+*::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Tajawal', sans-serif;
 }
 
 html {
     scroll-behavior: smooth;
+    font-size: 16px;
 }
 
 body {
+    font-family: 'Tajawal', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     background: var(--bg);
     color: var(--text);
     line-height: 1.6;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
-/* الشريط الجانبي */
+/* ========================================
+   الشريط الجانبي (Sidebar)
+   ======================================== */
 .sidebar {
     width: 280px;
-    background: white;
+    background: var(--bg-white);
     position: fixed;
     height: 100vh;
     padding: 1.5rem;
     box-shadow: var(--shadow);
     transition: var(--transition);
+    z-index: 100;
+    overflow-y: auto;
 }
 
-/* الجدول المتجاوب */
+.sidebar::-webkit-scrollbar {
+    width: 6px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 3px;
+}
+
+/* ========================================
+   الجداول (Tables)
+   ======================================== */
 .responsive-table {
     overflow-x: auto;
-    border-radius: 12px;
+    border-radius: var(--border-radius);
     box-shadow: var(--shadow);
+    background: var(--bg-white);
 }
 
 .services-table {
     width: 100%;
     border-collapse: collapse;
-    background: white;
+    background: var(--bg-white);
 }
 
 .services-table th,
@@ -63,55 +122,339 @@ body {
     background: var(--primary);
     color: white;
     font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.875rem;
+    letter-spacing: 0.5px;
+}
+
+.services-table tr {
+    transition: var(--transition-fast);
 }
 
 .services-table tr:hover {
     background: #f8f9fa;
 }
 
-/* النماذج المنبثقة */
+.services-table tr:last-child td {
+    border-bottom: none;
+}
+
+/* ========================================
+   النماذج المنبثقة (Modals)
+   ======================================== */
 .modal-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0,0,0,0.5);
+    background: rgba(0, 0, 0, 0.5);
     display: none;
     justify-content: center;
     align-items: center;
     z-index: 1000;
+    backdrop-filter: blur(4px);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.modal-overlay.active {
+    display: flex;
+    opacity: 1;
 }
 
 .modal {
-    background: white;
+    background: var(--bg-white);
     padding: 2rem;
-    border-radius: 12px;
+    border-radius: var(--border-radius);
     width: 90%;
     max-width: 500px;
+    box-shadow: var(--shadow-hover);
+    transform: translateY(-20px);
+    transition: transform 0.3s ease;
 }
 
-/* التصميم الداكن */
+.modal-overlay.active .modal {
+    transform: translateY(0);
+}
+
+/* ========================================
+   الأزرار (Buttons)
+   ======================================== */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--border-radius-sm);
+    font-weight: 600;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: var(--transition);
+    border: none;
+    outline: none;
+    text-decoration: none;
+}
+
+.btn:focus {
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.3);
+}
+
+.btn-primary {
+    background: var(--secondary);
+    color: white;
+}
+
+.btn-primary:hover {
+    background: #2980B9;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+}
+
+.btn-success {
+    background: var(--success);
+    color: white;
+}
+
+.btn-success:hover {
+    background: #229954;
+    transform: translateY(-2px);
+}
+
+.btn-danger {
+    background: var(--danger);
+    color: white;
+}
+
+.btn-danger:hover {
+    background: #C0392B;
+    transform: translateY(-2px);
+}
+
+/* ========================================
+   شارات الحالة (Status Badges)
+   ======================================== */
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.status-badge.active {
+    background: rgba(39, 174, 96, 0.1);
+    color: var(--success);
+}
+
+.status-badge.pending {
+    background: rgba(243, 156, 18, 0.1);
+    color: var(--warning);
+}
+
+.status-badge.inactive {
+    background: rgba(231, 76, 60, 0.1);
+    color: var(--danger);
+}
+
+/* ========================================
+   النماذج (Forms)
+   ======================================== */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: var(--text);
+    font-size: 0.875rem;
+}
+
+.form-input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--border);
+    border-radius: var(--border-radius-sm);
+    font-size: 0.875rem;
+    transition: var(--transition-fast);
+    background: var(--bg-white);
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: var(--secondary);
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+}
+
+.form-input::placeholder {
+    color: var(--text-light);
+}
+
+/* ========================================
+   التصميم الداكن (Dark Mode)
+   ======================================== */
 [data-theme="dark"] {
-    --primary: #2C3E50;
-    --bg: #2C3E50;
-    --text: #F8F9FA;
-    --border: #34495E;
+    --primary: #34495E;
+    --bg: #1A1A2E;
+    --bg-white: #16213E;
+    --text: #EAEAEA;
+    --text-light: #A0A0A0;
+    --border: #2D3748;
+    --shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
-/* التحسينات التفاعلية */
+[data-theme="dark"] body {
+    background: var(--bg);
+    color: var(--text);
+}
+
+/* ========================================
+   التجاوب (Responsive Design)
+   ======================================== */
 @media (max-width: 1200px) {
     .sidebar {
+        width: 240px;
+    }
+}
+
+@media (max-width: 992px) {
+    .sidebar {
         width: 220px;
+        padding: 1rem;
     }
 }
 
 @media (max-width: 768px) {
     .sidebar {
-        transform: translateX(-100%);
+        transform: translateX(100%);
+        width: 280px;
+        right: 0;
+        left: auto;
     }
     
     .sidebar.active {
         transform: translateX(0);
     }
+    
+    .mobile-menu-btn {
+        display: flex;
+    }
+    
+    .services-table th,
+    .services-table td {
+        padding: 0.75rem;
+        font-size: 0.875rem;
+    }
+}
+
+@media (max-width: 480px) {
+    html {
+        font-size: 14px;
+    }
+    
+    .modal {
+        padding: 1.5rem;
+        width: 95%;
+    }
+    
+    .btn {
+        padding: 0.625rem 1.25rem;
+    }
+}
+
+/* ========================================
+   تأثيرات الحركة (Animations)
+   ======================================== */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+
+.animate-fadeIn {
+    animation: fadeIn 0.3s ease forwards;
+}
+
+.animate-slideIn {
+    animation: slideIn 0.3s ease forwards;
+}
+
+/* ========================================
+   الأدوات المساعدة (Utilities)
+   ======================================== */
+.text-center {
+    text-align: center;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* ========================================
+   شريط التمرير المخصص
+   ======================================== */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--text-light);
 }
