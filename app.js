@@ -47,11 +47,13 @@ class ServiceManager {
     }
 
     static renderServices() {
+        const servicesBody = document.getElementById('servicesBody');
+        if (!servicesBody) return; // التحقق من وجود العنصر
+        
         const start = (state.currentPage - 1) * state.itemsPerPage;
         const end = start + state.itemsPerPage;
         const paginatedServices = state.services.slice(start, end);
 
-        const servicesBody = document.getElementById('servicesBody');
         servicesBody.innerHTML = paginatedServices.map(service => `
             <tr>
                 <td>${service.name}</td>
@@ -111,16 +113,25 @@ class AuthManager {
 document.addEventListener('DOMContentLoaded', () => {
     AuthManager.initAuthListener();
     
-    // الأحداث
-    document.getElementById('newServiceBtn').addEventListener('click', () => {
-        // فتح نموذج إضافة خدمة
-    });
-
-    document.querySelectorAll('.sort-icon').forEach(icon => {
-        icon.addEventListener('click', (e) => {
-            const key = e.target.closest('th').dataset.sort;
-            state.sortConfig.direction = state.sortConfig.direction === 'asc' ? 'desc' : 'asc';
-            ServiceManager.fetchServices();
+    // الأحداث - التحقق من وجود العناصر قبل إضافة المستمعين
+    const newServiceBtn = document.getElementById('newServiceBtn');
+    if (newServiceBtn) {
+        newServiceBtn.addEventListener('click', () => {
+            // فتح نموذج إضافة خدمة
         });
-    });
+    }
+
+    const sortIcons = document.querySelectorAll('.sort-icon');
+    if (sortIcons.length > 0) {
+        sortIcons.forEach(icon => {
+            icon.addEventListener('click', (e) => {
+                const th = e.target.closest('th');
+                if (th && th.dataset.sort) {
+                    const key = th.dataset.sort;
+                    state.sortConfig.direction = state.sortConfig.direction === 'asc' ? 'desc' : 'asc';
+                    ServiceManager.fetchServices();
+                }
+            });
+        });
+    }
 });
