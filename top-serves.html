@@ -3,16 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>خدماتنا الاحترافية - فريق الأمن السيبراني</title>
+    <title>الخدمات الأكثر طلبًا | فريق أبونواف</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts - Inter -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
     <!-- Particles.js for animated background -->
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
     <style>
+        html { scroll-behavior: smooth; }
+
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Tajawal', sans-serif;
             background-color: #0d1117;
             color: #c9d1d9;
             direction: rtl;
@@ -89,6 +91,12 @@
         .btn-primary:hover {
             transform: scale(1.05);
             box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+        }
+
+        .hidden { display: none !important; }
+
+        .fade-in {
+            animation: fadeIn .35s ease;
         }
 
         /* Mobile specific styles */
@@ -201,13 +209,22 @@
     <div class="flex flex-col md:flex-row flex-1 z-10">
         <!-- Sidebar -->
         <aside class="w-full md:w-72 bg-gray-900/70 backdrop-blur-md text-gray-300 p-4 md:p-6 shadow-2xl overflow-y-auto max-h-[50vh] md:max-h-screen border-l-2 border-gray-700 md:sticky md:top-0">
-            <h2 class="text-2xl md:text-3xl font-extrabold mb-6 md:mb-8 text-center text-white">الخدمــات</h2>
+            <div class="flex items-center justify-center gap-3 mb-5 md:mb-6">
+                <img src="logo-shield.jpg" alt="شعار فريق أبونواف" class="w-14 h-14 rounded-full border border-blue-400/40 shadow-lg">
+                <div>
+                    <h2 class="text-2xl md:text-3xl font-extrabold text-white leading-tight">الخدمات الأكثر طلبًا</h2>
+                    <p class="text-xs md:text-sm text-gray-400 mt-1">تنقل منظم وسريع داخل الخدمات</p>
+                </div>
+            </div>
             <nav id="main-categories"></nav>
         </aside>
 
         <!-- Main content area -->
         <main class="flex-1 p-4 md:p-8 overflow-y-auto">
-            <h1 id="current-category-title" class="text-2xl md:text-4xl font-extrabold text-white mb-8 md:mb-10 title-underline">اختر قسمًا للبدء</h1>
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-8 md:mb-10">
+                <h1 id="current-category-title" class="text-2xl md:text-4xl font-extrabold text-white title-underline">اختر قسمًا للبدء</h1>
+                <a href="index.html" class="inline-flex items-center justify-center gap-2 rounded-full border border-blue-500/40 bg-blue-500/10 px-5 py-2 text-sm md:text-base font-semibold text-blue-300 hover:bg-blue-500/20 transition">العودة للرئيسية</a>
+            </div>
 
             <!-- Sub-categories Section -->
             <div id="sub-categories-section" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-8">
@@ -512,18 +529,44 @@
         const serviceDetailsSection = document.getElementById('service-details-section');
         const currentCategoryTitle = document.getElementById('current-category-title');
         const backToServicesBtn = document.getElementById('back-to-services-btn');
+        const serviceDetailName = document.getElementById('service-detail-name');
+        const serviceDetailDescription = document.getElementById('service-detail-description');
+        const serviceDetailFees = document.getElementById('service-detail-fees');
+        const serviceDetailTime = document.getElementById('service-detail-time');
+        const serviceDetailSteps = document.getElementById('service-detail-steps');
 
         let currentMainCategory = null;
         let currentSubCategory = null;
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function setActiveMainCategory(mainCategoryKey) {
+            document.querySelectorAll('.sidebar-button').forEach(button => {
+                button.classList.toggle('active', button.dataset.category === mainCategoryKey);
+            });
+        }
+
+        function resetDetails() {
+            serviceDetailName.textContent = '';
+            serviceDetailDescription.textContent = '';
+            serviceDetailFees.textContent = '';
+            serviceDetailTime.textContent = '';
+            serviceDetailSteps.innerHTML = '';
+            serviceDetailsSection.classList.add('hidden');
+        }
 
         function renderMainCategories() {
             mainCategoriesNav.innerHTML = '';
             for (const key in servicesData) {
                 const category = servicesData[key];
                 const button = document.createElement('button');
+                button.type = 'button';
+                button.dataset.category = key;
                 button.className = 'sidebar-button w-full text-right py-3 px-4 rounded-lg text-lg hover:bg-gray-800 focus:outline-none mb-2';
                 button.innerHTML = `<span class="text-2xl ml-2">${category.icon}</span>${category.name}`;
-                button.onclick = () => showSubCategories(key);
+                button.addEventListener('click', () => showSubCategories(key));
                 mainCategoriesNav.appendChild(button);
             }
         }
@@ -532,80 +575,106 @@
             currentMainCategory = mainCategoryKey;
             currentSubCategory = null;
             const mainCategory = servicesData[mainCategoryKey];
+
+            setActiveMainCategory(mainCategoryKey);
             currentCategoryTitle.innerHTML = `<span class="text-blue-400">${mainCategory.icon}</span> ${mainCategory.name}`;
             subCategoriesSection.innerHTML = '';
             servicesListSection.innerHTML = '';
-            serviceDetailsSection.classList.add('hidden');
+            resetDetails();
 
             for (const key in mainCategory.subCategories) {
                 const subCategory = mainCategory.subCategories[key];
-                const card = document.createElement('div');
-                card.className = 'service-card p-6 rounded-xl shadow-lg cursor-pointer flex flex-col items-center text-center';
+                const card = document.createElement('button');
+                card.type = 'button';
+                card.className = 'service-card p-6 rounded-xl shadow-lg cursor-pointer flex flex-col items-center text-center fade-in';
                 card.innerHTML = `
                     <div class="text-5xl mb-4">${subCategory.subIcon}</div>
                     <h3 class="text-xl font-semibold text-white mb-2">${subCategory.name}</h3>
+                    <p class="text-gray-400 text-sm">اضغط لعرض الخدمات المتاحة داخل هذا القسم.</p>
                 `;
-                card.onclick = () => showServicesList(mainCategoryKey, key);
+                card.addEventListener('click', () => showServicesList(mainCategoryKey, key));
                 subCategoriesSection.appendChild(card);
             }
+
             subCategoriesSection.classList.remove('hidden');
             servicesListSection.classList.add('hidden');
+            scrollToTop();
         }
 
         function showServicesList(mainCategoryKey, subCategoryKey) {
+            currentMainCategory = mainCategoryKey;
             currentSubCategory = subCategoryKey;
-            const subCategory = servicesData[mainCategoryKey].subCategories[subCategoryKey];
-            currentCategoryTitle.innerHTML = `<span class="text-blue-400">${servicesData[mainCategoryKey].icon}</span> ${servicesData[mainCategoryKey].name} <span class="text-gray-500">/</span> <span class="text-blue-300">${subCategory.subIcon}</span> ${subCategory.name}`;
+
+            const mainCategory = servicesData[mainCategoryKey];
+            const subCategory = mainCategory.subCategories[subCategoryKey];
+
+            setActiveMainCategory(mainCategoryKey);
+            currentCategoryTitle.innerHTML = `<span class="text-blue-400">${mainCategory.icon}</span> ${mainCategory.name} <span class="text-gray-500">/</span> <span class="text-blue-300">${subCategory.subIcon}</span> ${subCategory.name}`;
             subCategoriesSection.classList.add('hidden');
             servicesListSection.innerHTML = '';
-            serviceDetailsSection.classList.add('hidden');
+            resetDetails();
 
             for (const key in subCategory.services) {
                 const service = subCategory.services[key];
-                const card = document.createElement('div');
-                card.className = 'service-card p-6 rounded-xl shadow-lg cursor-pointer flex flex-col items-center text-center';
+                const card = document.createElement('button');
+                card.type = 'button';
+                card.className = 'service-card p-6 rounded-xl shadow-lg cursor-pointer flex flex-col items-center text-center fade-in';
                 card.innerHTML = `
                     <div class="text-5xl mb-4">${service.serviceIcon}</div>
                     <h3 class="text-xl font-semibold text-white mb-2">${service.name}</h3>
-                    <p class="text-gray-400 text-sm">${service.description.substring(0, 100)}...</p>
+                    <p class="text-gray-400 text-sm">${service.description.substring(0, 110)}...</p>
                 `;
-                card.onclick = () => showServiceDetails(mainCategoryKey, subCategoryKey, key);
+                card.addEventListener('click', () => showServiceDetails(mainCategoryKey, subCategoryKey, key));
                 servicesListSection.appendChild(card);
             }
+
             servicesListSection.classList.remove('hidden');
+            scrollToTop();
         }
 
         function showServiceDetails(mainCategoryKey, subCategoryKey, serviceKey) {
-            const service = servicesData[mainCategoryKey].subCategories[subCategoryKey].services[serviceKey];
-            currentCategoryTitle.innerHTML = `<span class="text-blue-400">${servicesData[mainCategoryKey].icon}</span> ${servicesData[mainCategoryKey].name} <span class="text-gray-500">/</span> <span class="text-blue-300">${servicesData[mainCategoryKey].subCategories[subCategoryKey].subIcon}</span> ${servicesData[mainCategoryKey].subCategories[subCategoryKey].name} <span class="text-gray-500">/</span> <span class="text-blue-200">${service.serviceIcon}</span> ${service.name}`;
+            currentMainCategory = mainCategoryKey;
+            currentSubCategory = subCategoryKey;
+
+            const mainCategory = servicesData[mainCategoryKey];
+            const subCategory = mainCategory.subCategories[subCategoryKey];
+            const service = subCategory.services[serviceKey];
+
+            setActiveMainCategory(mainCategoryKey);
+            currentCategoryTitle.innerHTML = `<span class="text-blue-400">${mainCategory.icon}</span> ${mainCategory.name} <span class="text-gray-500">/</span> <span class="text-blue-300">${subCategory.subIcon}</span> ${subCategory.name} <span class="text-gray-500">/</span> <span class="text-blue-200">${service.serviceIcon}</span> ${service.name}`;
             subCategoriesSection.classList.add('hidden');
             servicesListSection.classList.add('hidden');
 
-            document.getElementById('service-detail-name').innerText = service.name;
-            document.getElementById('service-detail-description').innerText = service.description;
-            document.getElementById('service-detail-fees').innerText = service.fees;
-            document.getElementById('service-detail-time').innerText = service.time;
-
-            const stepsList = document.getElementById('service-detail-steps');
-            stepsList.innerHTML = '';
-            service.steps.forEach(step => {
-                const li = document.createElement('li');
-                li.innerText = step;
-                stepsList.appendChild(li);
-            });
+            serviceDetailName.textContent = service.name;
+            serviceDetailDescription.textContent = service.description;
+            serviceDetailFees.textContent = service.fees;
+            serviceDetailTime.textContent = service.time;
+            serviceDetailSteps.innerHTML = service.steps.map(step => `<li>${step}</li>`).join('');
 
             serviceDetailsSection.classList.remove('hidden');
+            serviceDetailsSection.classList.add('fade-in');
+            scrollToTop();
         }
 
-        backToServicesBtn.onclick = () => {
-            if (currentSubCategory) {
+        backToServicesBtn.addEventListener('click', () => {
+            if (currentMainCategory && currentSubCategory) {
                 showServicesList(currentMainCategory, currentSubCategory);
-            } else if (currentMainCategory) {
-                showSubCategories(currentMainCategory);
-            } else {
-                renderMainCategories();
+                return;
             }
-        };
+            if (currentMainCategory) {
+                showSubCategories(currentMainCategory);
+                return;
+            }
+            bootServicesPage();
+        });
+
+        function bootServicesPage() {
+            renderMainCategories();
+            const firstMainCategoryKey = Object.keys(servicesData)[0];
+            if (firstMainCategoryKey) {
+                showSubCategories(firstMainCategoryKey);
+            }
+        }
 
         // Particles.js initialization
         particlesJS('particles-js', {
@@ -720,7 +789,7 @@
         });
 
         // Initial render
-        renderMainCategories();
+        bootServicesPage();
     </script>
 </body>
 </html>
