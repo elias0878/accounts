@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-label="مكافحة الابتزاز">
+  <rect width="256" height="256" rx="56" fill="#e53e3e"/>
+  <path d="M128 34l72 32v50c0 48-29 86-72 106-43-20-72-58-72-106V66l72-32z" fill="#ffffff" opacity="0.95"/>
+  <path d="M128 70l40 18v26c0 28-16 50-40 63-24-13-40-35-40-63V88l40-18z" fill="#e53e3e"/>
+  <rect x="118" y="92" width="20" height="56" rx="10" fill="#ffffff"/>
+  <circle cx="128" cy="170" r="12" fill="#ffffff"/>
+</svg>
